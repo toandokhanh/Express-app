@@ -1,1 +1,6 @@
-# NodeJs_blog
+### install
+- node js
+- npm 
+- nodemon
+- morgan
+- express-handlebars
