@@ -4,3 +4,5 @@
 - nodemon
 - morgan
 - express-handlebars
+- node-scss
+- bootstrap5
