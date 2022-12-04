@@ -70,11 +70,23 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 
-### install
+### Install
+#### Express js
 - node js
 - npm 
 - nodemon
 - morgan
 - express-handlebars
-- node-scss
-- bootstrap5
+- Prettier
+-
+#### React js
+- creact-react-app
+- customize-cra
+- babel-plugin-module-resolver
+- Sass - Scss
+- 
+
+### Extensions
+- 
+- 
+- 
