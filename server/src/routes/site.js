@@ -2,8 +2,8 @@ const express = require('express');
 const SiteController = require('../app/controllers/SiteController');
 const router = express.Router();
 //contact page
-router.use('/contacts', SiteController.contacts);
+router.get('/contacts', SiteController.contacts);
 //home page
-router.use('/', SiteController.index);
+router.get('/', SiteController.index);
 
 module.exports = router;

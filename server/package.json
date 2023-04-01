@@ -4,7 +4,7 @@
     "description": "hoc node",
     "main": "src/index.js",
     "scripts": {
-        "server": "nodemon --inspect src/index.js",
+        "start": "nodemon --inspect src/index.js",
         "watch": "node-sass --watch src/resources/scss/ -o src/public/css/",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
@@ -12,6 +12,7 @@
     "license": "ISC",
     "dependencies": {
         "argon2": "^0.30.2",
+        "bootstrap-icons": "^1.10.3",
         "cors": "^2.8.5",
         "dotenv": "^16.0.3",
         "express": "^4.18.2",

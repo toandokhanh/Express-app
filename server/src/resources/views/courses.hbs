@@ -1,0 +1,13 @@
+<main class='mt-5 d-flex gap-4 justify-content-center'>
+    {{#each courses}}
+        <div class='card' style='width: 18rem;'>
+            <a href='/courses/{{this.slug}}  '><img src='{{this.image}}' class='card-img-top' alt='...' /></a>
+            <div class='card-body'>
+                <a class='text-decoration-none' href='/courses/{{this.slug}}'><p
+                        class='card-text text-center font-weight-bold'
+                        style='font-weight: 600; color: black;'
+                    >{{this.name}}</p></a>
+            </div>
+        </div>
+    {{/each}}
+</main>
