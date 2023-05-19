@@ -29,3 +29,16 @@ main {
 footer {
     padding: 0 25px;
 }
+
+// style='width: 19rem; height: 20rem; border: none;'
+
+.card-course {
+    img {
+        width: 291px;
+        height: 164px;
+        object-fit: cover;
+    }
+}
+.test1 {
+    display: inline;
+}

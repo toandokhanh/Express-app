@@ -1,4 +1,4 @@
-<nav class='navbar navbar-dark bg-dark navbar-expand-lg navbar-light bg-light'>
+{{! <nav class='navbar navbar-dark bg-dark navbar-expand-lg navbar-light bg-light'>
     <div class='container-fluid'>
         <a class='navbar-brand' href='#'>F8</a>
         <button
@@ -39,7 +39,7 @@
                     </ul>
                 </li>
                 <li class='nav-item'>
-                    <a class='nav-link disabled' href='#' tabindex='-1' aria-disabled='true'>Blog</a>
+                    <a class='nav-link' href='#' tabindex='-1' aria-disabled='true'>Blog</a>
                 </li>
                 <li class='nav-item'>
                     <a class='nav-link' href='/contacts' tabindex='-1' aria-disabled='true'>Contact</a>
@@ -49,6 +49,56 @@
                 <input class='form-control me-2' type='search' placeholder='Search' aria-label='Search' />
                 <button class='btn btn-outline-success' type='submit'>Search</button>
             </form>
+        </div>
+    </div>
+</nav> }}
+
+<nav class='navbar navbar-dark bg-dark navbar-expand-lg navbar-light bg-light'>
+    <div class='container-fluid'>
+        <a class='navbar-brand' href='/'>F8 EDUCATION</a>
+        <button
+            class='navbar-toggler'
+            type='button'
+            data-bs-toggle='collapse'
+            data-bs-target='#navbarNavDropdown'
+            aria-controls='navbarNavDropdown'
+            aria-expanded='false'
+            aria-label='Toggle navigation'
+        >
+            <span class='navbar-toggler-icon'></span>
+        </button>
+        <div class='collapse navbar-collapse' id='navbarNavDropdown'>
+            <ul class='navbar-nav'>
+                <li class='nav-item'>
+                    <a class='nav-link active' aria-current='page' href='/courses'>Courses</a>
+                </li>
+                <li class='nav-item'>
+                    <a class='nav-link' href='/news'>News</a>
+                </li>
+                <li class='nav-item'>
+                    <a class='nav-link' href='/blog'>Blog</a>
+                </li>
+                <li class='nav-item'>
+                    <a class='nav-link' href='/blog'>About Us</a>
+                </li>
+                <li class='nav-item dropdown'>
+                    <a
+                        class='nav-link dropdown-toggle'
+                        href='#'
+                        id='navbarDropdownMenuLink'
+                        role='button'
+                        data-bs-toggle='dropdown'
+                        aria-expanded='false'
+                    >
+                        Toan Do Khanh
+                    </a>
+                    <ul class='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>
+                        <li><a class='dropdown-item' href='/courses/create'>Add Courses</a></li>
+                        <li><a class='dropdown-item' href='#'>Information</a></li>
+                        <li><a class='dropdown-item' href='#'>Setting</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>

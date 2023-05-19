@@ -16,7 +16,8 @@ APP.use(morgan('combined'));
 APP.engine('hbs', engine({ extname: '.hbs' }));
 APP.set('view engine', 'hbs');
 APP.set('views', PART.join(__dirname, 'resources', 'views'));
-
+APP.use(express.urlencoded({ extended: true }));
+APP.use(express.json());
 // route init
 route(APP);
 

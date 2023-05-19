@@ -1,13 +1,25 @@
-<main class='mt-5 d-flex gap-4 justify-content-center'>
-    {{#each courses}}
-        <div class='card' style='width: 18rem;'>
-            <a href='/courses/{{this.slug}}  '><img src='{{this.image}}' class='card-img-top' alt='...' /></a>
-            <div class='card-body'>
-                <a class='text-decoration-none' href='/courses/{{this.slug}}'><p
-                        class='card-text text-center font-weight-bold'
-                        style='font-weight: 600; color: black;'
-                    >{{this.name}}</p></a>
-            </div>
+<main class='mt-3 d-flex gap-4 justify-content-center'>
+    <div class='container'>
+        <h3>Khóa học</h3>
+        <br />
+        <div class='row'>
+            {{#each courses}}
+                <div class='col-sm-6 col-lg-3 mb-3'>
+                    <div class='card card-course' style='border:none'>
+                        <a href='/courses/{{this.slug}}  '><img
+                                src='{{this.image}}'
+                                class='card-img-top'
+                                alt='{{this.name}}'
+                                style='border-radius: 25px;'
+                            /></a>
+                        <div class='card-body'>
+                            <h5 style='margin-top: -7px;' class='card-title'>{{this.name}}</h5>
+                            <p style='margin-top: -5px;' class='card-text'>{{this.price}}</p>
+                            {{! <a href='#' class='btn btn-primary'>Mua khóa học</a> }}
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
         </div>
-    {{/each}}
+    </div>
 </main>
