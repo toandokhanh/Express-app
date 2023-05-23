@@ -53,8 +53,8 @@
     </div>
 </nav> }}
 
-<nav class='navbar navbar-dark bg-dark navbar-expand-lg navbar-light bg-light'>
-    <div class='container-fluid'>
+<nav class='navbar navbar navbar-expand-lg navbar-light bg-light'>
+    <div class='container-fluid px-4'>
         <a class='navbar-brand' href='/'>F8 EDUCATION</a>
         <button
             class='navbar-toggler'
@@ -67,8 +67,8 @@
         >
             <span class='navbar-toggler-icon'></span>
         </button>
-        <div class='collapse navbar-collapse' id='navbarNavDropdown'>
-            <ul class='navbar-nav'>
+        <div class='collapse navbar-collapse d-flex' id='navbarNavDropdown'>
+            <ul class='navbar-nav flex-grow-1'>
                 <li class='nav-item'>
                     <a class='nav-link active' aria-current='page' href='/courses'>Courses</a>
                 </li>
@@ -81,7 +81,16 @@
                 <li class='nav-item'>
                     <a class='nav-link' href='/blog'>About Us</a>
                 </li>
+
+            </ul>
+            <ul class='navbar-nav'>
+                <img
+                    style='width: 30px; height: 30px; border-radius: 50%; margin-top: 5px;'
+                    src='https://scontent.fvca1-4.fna.fbcdn.net/v/t39.30808-6/348479974_1275345679746113_4610555181030115972_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=2zLsDk42XsYAX9TP-5G&_nc_ht=scontent.fvca1-4.fna&oh=00_AfBeGbJ6UcC8GWi3xkxmF4YD6cnZU7sOiFAM9g5UKyLq9Q&oe=64731621'
+                    alt=''
+                />
                 <li class='nav-item dropdown'>
+
                     <a
                         class='nav-link dropdown-toggle'
                         href='#'
@@ -93,9 +102,14 @@
                         Toan Do Khanh
                     </a>
                     <ul class='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>
-                        <li><a class='dropdown-item' href='/courses/create'>Add Courses</a></li>
-                        <li><a class='dropdown-item' href='#'>Information</a></li>
+                        {{! <li><a class='dropdown-item' href='/courses/create'>Add Courses</a></li> }}
+                        <li><a class='dropdown-item' href='#'>Personal</a></li>
+                        <div class='dropdown-divider'></div>
+                        <li><a class='dropdown-item' href='me/stored/courses'>My courses</a></li>
+                        <li><a class='dropdown-item' href='me/stored/blog'>My blogs</a></li>
+                        <div class='dropdown-divider'></div>
                         <li><a class='dropdown-item' href='#'>Setting</a></li>
+                        <li><a class='dropdown-item' href='#'>Log out</a></li>
                     </ul>
                 </li>
             </ul>

@@ -1,0 +1,37 @@
+<div class='container'>
+    <div class='mt-5'>
+        <div class='d-flex justify-content-between'>
+            <h3>My Courses</h3>
+            <button type='button' class='btn btn-primary'><a
+                    href='/courses/create'
+                    style='color: azure; text-decoration: none;'
+                >Add courses</a></button>
+        </div>
+        <table class='table table-striped mt-5'>
+            <thead>
+                <tr>
+                    <th scope='col'>#</th>
+                    <th scope='col'>Name </th>
+                    <th scope='col'>Price </th>
+                    <th scope='col'>Level</th>
+                    <th scope='col'>Time create</th>
+                    <th scope='col'></th>
+                    <th scope='col'></th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each courses}}
+                    <tr>
+                        <th scope='row'>{{sum @index 1}}</th>
+                        <td>{{this.name}}</td>
+                        <td>{{this.price}}</td>
+                        <td>{{this.level}}</td>
+                        <td>{{this.createdAt}}</td>
+                        <td><a class='btn-primary' href='/courses/{{this._id}}/edit'>Update</a></td>
+                        <td><a class='btn-primary' href=''>Delete</a></td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>

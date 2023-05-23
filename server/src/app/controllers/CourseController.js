@@ -1,5 +1,6 @@
 const Courses = require('../models/Courses');
 const { mongooseToObject } = require('../../util/mongoose');
+const { mutipleMongooseToObject } = require('../../util/mongoose');
 class CourseController {
     // [GET] /courses/:slug
     show(req, res, next) {
@@ -35,11 +36,30 @@ class CourseController {
         // Courses.find({}, function (err, courses) {
         //     if (!err) res.json(courses);
         //     else res.status(400).json({ message: 'error!!' });  });
-        // sữ dụng promise
+        // sử dụng promise
         Courses.find({})
             .then((courses) => {
                 courses = courses.map((course) => course.toObject());
                 res.render('courses', { courses });
+            })
+            .catch(next);
+    }
+    // [GET] /courses/:id/edit
+    edit(req, res, next) {
+        // res.render('courses/edit');
+        Courses.findById(req.params.id)
+            .then((courses) => {
+                res.render('courses/edit', {
+                    courses: mongooseToObject(courses),
+                });
+            })
+            .catch(next);
+    }
+    update(req, res, next) {
+        // res.json(req.body);
+        Courses.updateOne({ _id: req.params.id }, req.body)
+            .then(() => {
+                res.redirect('/me/stored/courses');
             })
             .catch(next);
     }

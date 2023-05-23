@@ -24,7 +24,7 @@ nav {
     padding: 0 25px;
 }
 main {
-    padding: 0 25px;
+    // padding: 0 25px;
 }
 footer {
     padding: 0 25px;
@@ -41,4 +41,9 @@ footer {
 }
 .test1 {
     display: inline;
+}
+#slider img {
+    max-width: 100%;
+    max-height: 600px;
+    object-fit: cover;
 }
