@@ -88,4 +88,5 @@
     function(event) { const button = event.relatedTarget; const id = button.getAttribute('data-id');
     CourseId = id; }); deleteCourse.addEventListener('click',() => { formDeleteCoures.action =
     '/courses/'+ CourseId+ '?_method=DELETE'; formDeleteCoures.submit()}) });
+
 </script>

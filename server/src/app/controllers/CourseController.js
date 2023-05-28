@@ -70,6 +70,16 @@ class CourseController {
             })
             .catch(next);
     }
+    home(req, res, next) {
+        Courses.find({})
+            .sort({ createdAt: -1 })
+            .limit(3)
+            .then((courses) => {
+                courses = courses.map((course) => course.toObject());
+                res.render('courses', { courses });
+            })
+            .catch(next);
+    }
 }
 
 module.exports = new CourseController();

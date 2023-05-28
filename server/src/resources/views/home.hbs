@@ -3,7 +3,11 @@
     <section id='slider'>
         <div id='carouselExampleIndicators' class='carousel slide' data-bs-ride='carousel'>
             <ol class='carousel-indicators'>
-                <li data-bs-target='#carouselExampleIndicators' data-bs-slide-to='0' class='active'></li>
+                <li
+                    data-bs-target='#carouselExampleIndicators'
+                    data-bs-slide-to='0'
+                    class='active'
+                ></li>
                 <li data-bs-target='#carouselExampleIndicators' data-bs-slide-to='1'></li>
                 <li data-bs-target='#carouselExampleIndicators' data-bs-slide-to='2'></li>
             </ol>
@@ -30,11 +34,21 @@
                     />
                 </div>
             </div>
-            <a class='carousel-control-prev' href='#carouselExampleIndicators' role='button' data-bs-slide='prev'>
+            <a
+                class='carousel-control-prev'
+                href='#carouselExampleIndicators'
+                role='button'
+                data-bs-slide='prev'
+            >
                 <span class='carousel-control-prev-icon' aria-hidden='true'></span>
                 <span class='visually-hidden'>Previous</span>
             </a>
-            <a class='carousel-control-next' href='#carouselExampleIndicators' role='button' data-bs-slide='next'>
+            <a
+                class='carousel-control-next'
+                href='#carouselExampleIndicators'
+                role='button'
+                data-bs-slide='next'
+            >
                 <span class='carousel-control-next-icon' aria-hidden='true'></span>
                 <span class='visually-hidden'>Next</span>
             </a>
@@ -44,41 +58,22 @@
     <!--Courses-->
     <section id='courses'>
         <div class='container'>
+            <br />
+            <br />
             <h2>Featured Courses</h2>
+            <br />
             <div class='row row-cols-1 row-cols-md-3 g-4'>
-                <!--Card 1-->
-                <div class='col'>
-                    <div class='card h-100'>
-                        <img src='https://via.placeholder.com/500x300?text=Course+1' class='card-img-top' alt='...' />
-                        <div class='card-body'>
-                            <h5 class='card-title'>Course 1</h5>
-                            <p class='card-text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque cursus
-                                orci blandit elit dictum, eget tristique justo congue.</p>
+                {{#each courses}}
+                    <div class='col'>
+                        <div class='card h-100'>
+                            <img src='{{this.image}}' class='card-img-top' alt='...' />
+                            <div class='card-body'>
+                                <h5 class='card-title'>{{this.name}}</h5>
+                                <p class='card-text'>{{this.description}}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!--Card 2-->
-                <div class='col'>
-                    <div class='card h-100'>
-                        <img src='https://via.placeholder.com/500x300?text=Course+2' class='card-img-top' alt='...' />
-                        <div class='card-body'>
-                            <h5 class='card-title'>Course 2</h5>
-                            <p class='card-text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque cursus
-                                orci blandit elit dictum, eget tristique justo congue.</p>
-                        </div>
-                    </div>
-                </div>
-                <!--Card 3-->
-                <div class='col'>
-                    <div class='card h-100'>
-                        <img src='https://via.placeholder.com/500x300?text=Course+3' class='card-img-top' alt='...' />
-                        <div class='card-body'>
-                            <h5 class='card-title'>Course 3</h5>
-                            <p class='card-text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque cursus
-                                orci blandit elit dictum, eget tristique justo congue.</p>
-                        </div>
-                    </div>
-                </div>
+                {{/each}}
             </div>
         </div>
     </section>
