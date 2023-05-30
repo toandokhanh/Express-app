@@ -1,5 +1,7 @@
 const { mutipleMongooseToObject } = require('../../util/mongoose');
+const { mongooseToObject } = require('../../util/mongoose');
 const User = require('../models/User');
+const session = require('express-session');
 
 class UserController {
     // [GET] use/register
@@ -12,32 +14,27 @@ class UserController {
     }
     // [POST] use/register
     createNewUser(req, res, next) {
-        const { name, email, password, confirmPassword, role } = req.body;
-
-        // Kiểm tra nếu password không đủ mạnh hoặc không khớp với confirmPassword thì trả về mã lỗi
-        if (password.length < 8 || password !== confirmPassword) {
-            return res.status(400).json({ message: 'Invalid password' });
-        }
+        const { name, email, password, role } = req.body;
 
         // Tạo user mới với các thông tin được gửi lên từ request body
-        const newUser = new User({ name, username: email, password, role });
+        const newUser = new User({ name, email, password, role });
 
         // Lưu user mới vào database
         newUser
             .save()
             .then(() => {
-                res.json({ message: 'User created successfully.' });
+                res.render('user/login', { success: 'User created successfully.' });
             })
             .catch((err) => {
                 console.log(err);
-                res.status(500).json({ message: 'Error creating user.' });
+                res.status(500).render('user/register', { message: 'Error creating user.' });
             });
     }
 
     // [POST] use/login
     checklogin(req, res, next) {
         const { email, password } = req.body;
-
+        // res.json(req.body.email);
         // Kiểm tra xem email và mật khẩu đã được cung cấp hay chưa
         if (!email || !password) {
             return res
@@ -61,14 +58,31 @@ class UserController {
                         .render('user/login', { message: 'Wrong account or password' });
                 }
 
-                // Tạo biến session để lưu trữ thông tin người dùng và chuyển hướng về trang gốc
-                // req.session.user = user;
-                res.redirect('/', { user: user });
+                // Lưu biến session user
+                req.session.user = user;
+
+                // Render template home và truyền vào biến user
+                res.render('home', {
+                    user: mongooseToObject(user),
+                    loginLink: false, // ẩn liên kết để đăng nhập
+                    logoutLink: true, // hiển thị liên kết để đăng xuất
+                });
             })
             .catch((err) => {
                 console.log(err);
                 res.status(500).render('user/login', { message: 'Something went wrong' });
             });
+    }
+    // [GET] use/logout
+    logout(req, res, next) {
+        // Xóa biến session user để đăng xuất người dùng
+        req.session.destroy((err) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.redirect('/');
+            }
+        });
     }
 }
 

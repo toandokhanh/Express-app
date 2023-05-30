@@ -2,7 +2,22 @@
     .nav{display: none;} footer{display: none}.navbar{display: none;}.form-signin{margin-top:
     -30px;}
 </style>
+
 <div class='container'>
+    {{#if message}}
+        <div
+            id='myAlert'
+            class='alert alert-danger text-center slideInRight'
+            role='alert'
+        >{{message}}</div>
+    {{/if}}
+    {{#if success}}
+        <div
+            id='mySuccess'
+            class='alert alert-success text-center slideInRight'
+            role='alert'
+        >{{success}}</div>
+    {{/if}}
     <main class='form-signin'>
         <form method='POST' action='/user/register'>
             <a href='/'><img
@@ -105,4 +120,10 @@
     (password.length < 8) { alert('Password must be at least 8 characters long.'); } else if
     (password !== confirmPassword) { alert('Passwords do not match.'); } else { // Submit the form
     form.submit(); } });
+</script>
+<script type='text/javascript'>
+    function hideAlert() { var alerts = document.getElementsByClassName('alert'); for (var i = 0; i
+    < alerts.length; i++) { var alert = alerts[i]; setTimeout(function(alert) { alert.style.opacity
+    = "0"; setTimeout(function(alert) { alert.style.display = "none"; }, 500, alert); }, 3000,
+    alert); } } hideAlert();
 </script>

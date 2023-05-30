@@ -1,11 +1,22 @@
 <style>
     .nav{display: none;} footer{display: none}.navbar{display: none;}
 </style>
-{{#if message}}
-    <div class='alert alert-danger text-center'>{{message}}</div>
-{{/if}}
 
 <div class='container'>
+    {{#if message}}
+        <div
+            id='myAlert'
+            class='alert alert-danger text-center slideInRight'
+            role='alert'
+        >{{message}}</div>
+    {{/if}}
+    {{#if success}}
+        <div
+            id='mySuccess'
+            class='alert alert-success text-center slideInRight'
+            role='alert'
+        >{{success}}</div>
+    {{/if}}
     <main class='form-signin'>
         <form method='post' action='/user/login'>
             <a href='/'><img
@@ -54,6 +65,9 @@
         </form>
     </main>
 </div>
-<script>
-
+<script type='text/javascript'>
+    function hideAlert() { var alerts = document.getElementsByClassName('alert'); for (var i = 0; i
+    < alerts.length; i++) { var alert = alerts[i]; setTimeout(function(alert) { alert.style.opacity
+    = "0"; setTimeout(function(alert) { alert.style.display = "none"; }, 500, alert); }, 3000,
+    alert); } } hideAlert();
 </script>

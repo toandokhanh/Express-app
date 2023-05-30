@@ -1,58 +1,3 @@
-{{! <nav class='navbar navbar-dark bg-dark navbar-expand-lg navbar-light bg-light'>
-    <div class='container-fluid'>
-        <a class='navbar-brand' href='#'>F8</a>
-        <button
-            class='navbar-toggler'
-            type='button'
-            data-bs-toggle='collapse'
-            data-bs-target='#navbarSupportedContent'
-            aria-controls='navbarSupportedContent'
-            aria-expanded='false'
-            aria-label='Toggle navigation'
-        >
-            <span class='navbar-toggler-icon'></span>
-        </button>
-        <div class='collapse navbar-collapse' id='navbarSupportedContent'>
-            <ul class='navbar-nav me-auto mb-2 mb-lg-0'>
-                <li class='nav-item'>
-                    <a class='nav-link active' aria-current='page' href='./'>Home</a>
-                </li>
-                <li class='nav-item'>
-                    <a class='nav-link' href='./news'>News</a>
-                </li>
-                <li class='nav-item dropdown'>
-                    <a
-                        class='nav-link dropdown-toggle'
-                        href='#'
-                        id='navbarDropdown'
-                        role='button'
-                        data-bs-toggle='dropdown'
-                        aria-expanded='false'
-                    >
-                        Catetorys
-                    </a>
-                    <ul class='dropdown-menu' aria-labelledby='navbarDropdown'>
-                        <li><a class='dropdown-item' href='#'>Action</a></li>
-                        <li><a class='dropdown-item' href='#'>Another action</a></li>
-                        <li><hr class='dropdown-divider' /></li>
-                        <li><a class='dropdown-item' href='#'>Something else here</a></li>
-                    </ul>
-                </li>
-                <li class='nav-item'>
-                    <a class='nav-link' href='#' tabindex='-1' aria-disabled='true'>Blog</a>
-                </li>
-                <li class='nav-item'>
-                    <a class='nav-link' href='/contacts' tabindex='-1' aria-disabled='true'>Contact</a>
-                </li>
-            </ul>
-            <form class='d-flex'>
-                <input class='form-control me-2' type='search' placeholder='Search' aria-label='Search' />
-                <button class='btn btn-outline-success' type='submit'>Search</button>
-            </form>
-        </div>
-    </div>
-</nav> }}
-
 <nav class='navbar navbar-expand-lg navbar-light bg-light'>
     <div class='container-fluid px-4'>
         <a class='navbar-brand' href='/'>F8 EDUCATION</a>
@@ -83,36 +28,51 @@
                 </li>
 
             </ul>
-            <ul class='navbar-nav'>
-                <img
-                    style='width: 30px; height: 30px; border-radius: 50%; margin-top: 5px;'
-                    src='https://scontent.fvca1-4.fna.fbcdn.net/v/t39.30808-6/348479974_1275345679746113_4610555181030115972_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=2zLsDk42XsYAX9TP-5G&_nc_ht=scontent.fvca1-4.fna&oh=00_AfBeGbJ6UcC8GWi3xkxmF4YD6cnZU7sOiFAM9g5UKyLq9Q&oe=64731621'
-                    alt=''
-                />
-                <li class='nav-item dropdown'>
+            {{#if user}}
+                <ul class='navbar-nav'>
+                    <img
+                        style='width: 30px; height: 30px; border-radius: 50%; margin-top: 5px;'
+                        src='{{user.image}}'
+                        alt=''
+                    />
+                    <li class='nav-item dropdown'>
 
-                    <a
-                        class='nav-link dropdown-toggle'
-                        href='#'
-                        id='navbarDropdownMenuLink'
-                        role='button'
-                        data-bs-toggle='dropdown'
-                        aria-expanded='false'
-                    >
-                        Toan Do Khanh
+                        <a
+                            class='nav-link dropdown-toggle'
+                            href='#'
+                            id='navbarDropdownMenuLink'
+                            role='button'
+                            data-bs-toggle='dropdown'
+                            aria-expanded='false'
+                        >
+                            {{user.name}}
+                        </a>
+                        <ul class='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>
+                            {{! <li><a class='dropdown-item' href='/courses/create'>Add Courses</a></li> }}
+                            <li><a class='dropdown-item' href='#'>Personal</a></li>
+                            <div class='dropdown-divider'></div>
+                            <li><a class='dropdown-item' href='me/stored/courses'>My courses</a></li>
+                            <li><a class='dropdown-item' href='me/stored/blog'>My blogs</a></li>
+                            <div class='dropdown-divider'></div>
+                            <li><a class='dropdown-item' href='#'>Setting</a></li>
+                            <li><a class='dropdown-item' href='/user/logout'>Log out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            {{else}}
+                <div class='d-flex gap-4 no-user'>
+                    <a href='/user/register' role='button'>
+                        Sign up
                     </a>
-                    <ul class='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>
-                        {{! <li><a class='dropdown-item' href='/courses/create'>Add Courses</a></li> }}
-                        <li><a class='dropdown-item' href='#'>Personal</a></li>
-                        <div class='dropdown-divider'></div>
-                        <li><a class='dropdown-item' href='me/stored/courses'>My courses</a></li>
-                        <li><a class='dropdown-item' href='me/stored/blog'>My blogs</a></li>
-                        <div class='dropdown-divider'></div>
-                        <li><a class='dropdown-item' href='#'>Setting</a></li>
-                        <li><a class='dropdown-item' href='#'>Log out</a></li>
-                    </ul>
-                </li>
-            </ul>
+                    <a href='/user/login' role='button'>
+                        Sign in
+                    </a>
+                    <a href='/setting' role='button'>
+                        Setting
+                    </a>
+                </div>
+            {{/if}}
+
         </div>
     </div>
 </nav>

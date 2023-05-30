@@ -1,20 +1,16 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
-const slug = require('mongoose-slug-generator');
-mongoose.plugin(slug);
 
 const User = new Schema(
     {
         name: { type: String },
-        username: { type: String, unique: true },
+        email: { type: String, unique: true },
         password: { type: String },
         role: {
-            // Sử dụng enum để giới hạn giá trị của trường role chỉ nhận 1 hoặc 2
             type: String,
             enum: ['1', '2'],
             default: '2',
-            unique: true,
         },
         courses: [
             {
@@ -28,7 +24,11 @@ const User = new Schema(
                 ref: 'Course',
             },
         ],
-        image: { type: String },
+        image: {
+            type: String,
+            default:
+                'https://scontent.fvca1-4.fna.fbcdn.net/v/t39.30808-6/348479974_1275345679746113_4610555181030115972_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=2zLsDk42XsYAX9TP-5G&_nc_ht=scontent.fvca1-4.fna&oh=00_AfBeGbJ6UcC8GWi3xkxmF4YD6cnZU7sOiFAM9g5UKyLq9Q&oe=64731621',
+        },
     },
     { timestamps: true },
 );
