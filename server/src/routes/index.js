@@ -3,6 +3,7 @@ const routeRouter = require('./route');
 const blogRouter = require('./blog');
 const siteRouter = require('./site');
 const meRouter = require('./me');
+const userRouter = require('./user');
 const coursesRouter = require('./courses');
 function route(APP) {
     //news router
@@ -11,6 +12,7 @@ function route(APP) {
     APP.use('/route', routeRouter);
     APP.use('/blog', blogRouter);
     APP.use('/me', meRouter);
+    APP.use('/user', userRouter);
     APP.use('', siteRouter);
 }
 

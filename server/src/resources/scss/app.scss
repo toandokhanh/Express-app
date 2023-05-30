@@ -138,3 +138,13 @@ footer {
     text-overflow: ellipsis;
     max-width: 50ch;
 }
+.form-signin {
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+}
+.role {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}

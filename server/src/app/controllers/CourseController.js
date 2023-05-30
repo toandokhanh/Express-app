@@ -41,6 +41,7 @@ class CourseController {
             .then((courses) => {
                 courses = courses.map((course) => course.toObject());
                 res.render('courses', { courses });
+                // res.json(courses);
             })
             .catch(next);
     }

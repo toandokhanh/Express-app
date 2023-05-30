@@ -13,6 +13,10 @@ const Course = new Schema(
         price: { type: String, maxlength: 255 },
         level: { type: String, maxlength: 255 },
         slug: { type: String, slug: 'name', unique: true },
+        user_id: {
+            type: ObjectId,
+            ref: 'User',
+        },
     },
     { timestamps: true },
 );

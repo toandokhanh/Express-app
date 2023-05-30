@@ -1,0 +1,59 @@
+<style>
+    .nav{display: none;} footer{display: none}.navbar{display: none;}
+</style>
+{{#if message}}
+    <div class='alert alert-danger text-center'>{{message}}</div>
+{{/if}}
+
+<div class='container'>
+    <main class='form-signin'>
+        <form method='post' action='/user/login'>
+            <a href='/'><img
+                    class=''
+                    src='/image/fullstack.png'
+                    alt=''
+                    width='320'
+                    height='230'
+                /></a>
+            <h1 style='margin-top: -50px;' class='h3 mb-3 fw-normal text-center'>SIGN IN</h1>
+
+            <div class='form-floating'>
+                <input
+                    type='email'
+                    name='email'
+                    class='form-control'
+                    id='floatingInput'
+                    required
+                    placeholder='name@example.com'
+                />
+                <label for='floatingInput'>Email</label>
+            </div>
+            <br />
+            <div class='form-floating'>
+                <input
+                    type='password'
+                    name='password'
+                    class='form-control'
+                    id='floatingPassword'
+                    required
+                    placeholder='Password'
+                />
+                <label for='floatingPassword'>Password</label>
+            </div>
+            <br />
+            <div class='checkbox mb-3 d-flex justify-content-between'>
+                <label>
+                    <input type='checkbox' value='remember-me' />
+                    Remember me
+                </label>
+                <div class='login'>
+                    <a href='/user/register'> Sign up</a>
+                </div>
+            </div>
+            <button class='w-100 btn btn-lg btn-primary' type='submit'>Sign in</button>
+        </form>
+    </main>
+</div>
+<script>
+
+</script>

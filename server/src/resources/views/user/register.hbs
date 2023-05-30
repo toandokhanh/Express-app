@@ -1,0 +1,108 @@
+<style>
+    .nav{display: none;} footer{display: none}.navbar{display: none;}.form-signin{margin-top:
+    -30px;}
+</style>
+<div class='container'>
+    <main class='form-signin'>
+        <form method='POST' action='/user/register'>
+            <a href='/'><img
+                    class=''
+                    src='/image/fullstack.png'
+                    alt=''
+                    width='320'
+                    height='230'
+                /></a>
+            <h1 style='margin-top: -50px;' class='h3 mb-3 fw-normal text-center'>SIGN UP</h1>
+
+            <div class='form-floating'>
+                <input type='text' class='form-control' name='name' required placeholder='text' />
+                <label for=''>Full Name</label>
+            </div>
+            <br />
+            <div class='form-floating'>
+                <input
+                    type='email'
+                    class='form-control'
+                    name='email'
+                    id='floatingInput'
+                    required
+                    placeholder='name@example.com'
+                />
+                <label for='floatingInput'>Email</label>
+            </div>
+            <br />
+            <div class='form-floating'>
+                <input
+                    type='password'
+                    class='form-control'
+                    name='password'
+                    id='floatingPassword'
+                    required
+                    placeholder='Password'
+                />
+                <label for='floatingPassword'>Password</label>
+                <span class='error-message'></span>
+            </div>
+            <br />
+            <div class='form-floating'>
+                <input
+                    type='password'
+                    class='form-control'
+                    name='confirmPassword'
+                    id='floatingconfirmPassword'
+                    required
+                    placeholder='confirmPassword'
+                />
+                <label for='floatingconfirmPassword'>Confirm Password </label>
+                <span class='error-message'></span>
+            </div>
+            <br />
+            <div class='role'>
+                <div class='form-check'>
+                    <input
+                        class='form-check-input'
+                        type='radio'
+                        name='role'
+                        id='student'
+                        value='1'
+                        checked
+                    />
+                    <label class='form-check-label' for='student'>
+                        Student
+                    </label>
+                </div>
+                <div class='form-check'>
+                    <input
+                        class='form-check-input'
+                        type='radio'
+                        name='role'
+                        id='lecturer'
+                        value='2'
+                    />
+                    <label class='form-check-label' for='lecturer'>
+                        Lecturer
+                    </label>
+                </div>
+                <br />
+            </div>
+            <div class='checkbox mb-3 d-flex justify-content-between'>
+                <label>
+                    <input type='checkbox' value='remember-me' />
+                    Remember me
+                </label>
+                <div class='login'>
+                    <a href='/user/login'> Sign in</a>
+                </div>
+            </div>
+            <button class='w-100 btn btn-lg btn-primary' type='submit'>Sign up</button>
+        </form>
+    </main>
+</div>
+<script>
+    const form = document.querySelector('form'); form.addEventListener('submit', (e) => {
+    e.preventDefault(); const password = document.querySelector('input[name="password"]').value;
+    const confirmPassword = document.querySelector('input[name="confirmPassword"]').value; if
+    (password.length < 8) { alert('Password must be at least 8 characters long.'); } else if
+    (password !== confirmPassword) { alert('Passwords do not match.'); } else { // Submit the form
+    form.submit(); } });
+</script>
