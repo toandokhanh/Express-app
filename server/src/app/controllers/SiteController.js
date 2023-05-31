@@ -1,4 +1,6 @@
 const Courses = require('../models/Courses');
+const { mongooseToObject } = require('../../util/mongoose');
+const { mutipleMongooseToObject } = require('../../util/mongoose');
 
 class SiteController {
     // index(req, res) {
@@ -9,9 +11,17 @@ class SiteController {
             .sort({ createdAt: -1 })
             .limit(3)
             .then((courses) => {
-                courses = courses.map((course) => course.toObject());
-                res.render('home', { courses });
-                // res.json(courses);
+                const user = req.session.user;
+                if (user) {
+                    res.render('home', {
+                        courses: mutipleMongooseToObject(courses),
+                        user: user,
+                    });
+                } else {
+                    res.render('home', {
+                        courses: mutipleMongooseToObject(courses),
+                    });
+                }
             })
             .catch(next);
     }

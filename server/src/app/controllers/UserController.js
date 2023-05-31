@@ -1,7 +1,7 @@
-const { mutipleMongooseToObject } = require('../../util/mongoose');
 const { mongooseToObject } = require('../../util/mongoose');
 const User = require('../models/User');
 const session = require('express-session');
+const bcrypt = require('bcrypt');
 
 class UserController {
     // [GET] use/register
@@ -13,66 +13,101 @@ class UserController {
         res.render('user/login');
     }
     // [POST] use/register
+    // createNewUser(req, res, next) {
+    //     const { name, email, password, role } = req.body;
+    //     const newUser = new User({ name, email, password, role });
+    //     // Lưu user mới vào database
+    //     newUser
+    //         .save()
+    //         .then(() => {
+    //             res.render('user/login', { success: 'User created successfully.' });
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //             res.status(500).render('user/register', { message: 'Error creating user.' });
+    //         });
+    // }
     createNewUser(req, res, next) {
         const { name, email, password, role } = req.body;
+        // Generate salt asynchronously with 10 rounds
+        bcrypt.genSalt(10, (err, salt) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).render('user/register', { message: 'Error creating user.' });
+            }
 
-        // Tạo user mới với các thông tin được gửi lên từ request body
-        const newUser = new User({ name, email, password, role });
+            // Hash the password with generated salt
+            bcrypt.hash(password, salt, (err, hashedPassword) => {
+                if (err) {
+                    console.error(err);
+                    return res
+                        .status(500)
+                        .render('user/register', { message: 'Error creating user.' });
+                }
 
-        // Lưu user mới vào database
-        newUser
-            .save()
-            .then(() => {
-                res.render('user/login', { success: 'User created successfully.' });
-            })
-            .catch((err) => {
-                console.log(err);
-                res.status(500).render('user/register', { message: 'Error creating user.' });
+                const newUser = new User({ name, email, password: hashedPassword, role });
+                // res.json(newUser);
+                newUser
+                    .save()
+                    .then(() => {
+                        return res.render('user/login', { success: 'User created successfully.' });
+                    })
+                    .catch((err) => {
+                        console.error(err);
+                        return res
+                            .status(500)
+                            .render('user/register', { message: 'Error creating user.' });
+                    });
             });
+        });
     }
 
     // [POST] use/login
-    checklogin(req, res, next) {
+    checkLogin(req, res, next) {
         const { email, password } = req.body;
-        // res.json(req.body.email);
-        // Kiểm tra xem email và mật khẩu đã được cung cấp hay chưa
-        if (!email || !password) {
-            return res
-                .status(400)
-                .render('user/login', { message: 'Email and password are required' });
-        }
 
+        // Tìm user có email tương ứng trong database
         User.findOne({ email })
             .then((user) => {
-                // res.json(user);
-                // Kiểm tra xem có tìm thấy người dùng với email đã cung cấp hay không
                 if (!user) {
-                    return res
-                        .status(404)
-                        .render('user/login', { message: `User with email ${email} not found` });
-                }
-                // Kiểm tra xem mật khẩu có khớp với mật khẩu trong CSDL hay không
-                if (password !== user.password) {
-                    return res
-                        .status(401)
-                        .render('user/login', { message: 'Wrong account or password' });
+                    return res.render('user/login', { message: 'Email or password is incorrect.' });
                 }
 
-                // Lưu biến session user
-                req.session.user = user;
+                // So sánh password đã hash trong database và password người dùng submit
+                bcrypt
+                    .compare(password, user.password)
+                    .then((isCorrectPassword) => {
+                        if (!isCorrectPassword) {
+                            return res.render('user/login', {
+                                message: 'Email or password is incorrect.',
+                            });
+                        }
 
-                // Render template home và truyền vào biến user
-                res.render('home', {
-                    user: mongooseToObject(user),
-                    loginLink: false, // ẩn liên kết để đăng nhập
-                    logoutLink: true, // hiển thị liên kết để đăng xuất
-                });
+                        // Lưu thông tin người dùng vào session sau khi đăng nhập thành công
+                        req.session.user = {
+                            id: user._id,
+                            name: user.name,
+                            email: user.email,
+                            role: user.role,
+                            image: user.image,
+                        };
+                        return res.redirect('/');
+                    })
+                    .catch((err) => {
+                        console.error(err);
+                        res.status(500).render('error', {
+                            message: 'An error occurred while processing your request.',
+                        });
+                    });
             })
             .catch((err) => {
-                console.log(err);
-                res.status(500).render('user/login', { message: 'Something went wrong' });
+                console.error(err);
+                res.status(500).render('error', {
+                    message: 'An error occurred while processing your request.',
+                });
             });
     }
+
     // [GET] use/logout
     logout(req, res, next) {
         // Xóa biến session user để đăng xuất người dùng
